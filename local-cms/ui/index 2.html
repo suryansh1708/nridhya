@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local CMS Admin</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Local CMS</h2>
+        <nav>
+            <a href="#" class="active" data-tab="config">Site Config</a>
+            <a href="#" data-tab="pages">Pages</a>
+            <a href="#" data-tab="deploy">Build & Deploy</a>
+        </nav>
+    </div>
+    
+    <main class="content">
+        <!-- Site Config Tab -->
+        <section id="config" class="tab-content active">
+            <header>
+                <h1>Site Configuration</h1>
+                <button id="save-config" class="btn primary">Save Config</button>
+            </header>
+            <div class="form-group">
+                <label for="site-title">Site Title</label>
+                <input type="text" id="site-title" placeholder="My Awesome Site">
+            </div>
+            <div class="form-group">
+                <label for="site-desc">Site Description</label>
+                <textarea id="site-desc" rows="3" placeholder="Description..."></textarea>
+            </div>
+            <div id="config-status" class="status-msg"></div>
+        </section>
+
+        <!-- Pages Tab -->
+        <section id="pages" class="tab-content">
+            <header>
+                <h1>Edit Pages</h1>
+                <button id="save-page" class="btn primary">Save Page</button>
+            </header>
+            <div class="form-group">
+                <label for="page-select">Select Page</label>
+                <select id="page-select">
+                    <option value="home.md">home.md</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="page-title">Page Title</label>
+                <input type="text" id="page-title">
+            </div>
+            <div class="form-group">
+                <label for="page-content">Markdown Content</label>
+                <textarea id="page-content" rows="15"></textarea>
+            </div>
+            <div id="page-status" class="status-msg"></div>
+        </section>
+
+        <!-- Deploy Tab -->
+        <section id="deploy" class="tab-content">
+            <header>
+                <h1>Build & Deploy</h1>
+            </header>
+            <div class="card">
+                <h3>1. Build Static Site</h3>
+                <p>Compiles the frontend using the latest content.</p>
+                <button id="btn-build" class="btn">Run Build</button>
+            </div>
+            <div class="card">
+                <h3>2. Commit Changes</h3>
+                <p>Saves your content to the local Git history.</p>
+                <input type="text" id="commit-msg" placeholder="Update site content">
+                <button id="btn-commit" class="btn">Commit</button>
+            </div>
+            <div class="card">
+                <h3>3. Push to GitHub</h3>
+                <p>Deploys your changes to GitHub Pages.</p>
+                <button id="btn-push" class="btn primary">Push (Deploy)</button>
+            </div>
+            <pre id="deploy-logs">Logs will appear here...</pre>
+        </section>
+    </main>
+    <script src="app.js"></script>
+</body>
+</html>

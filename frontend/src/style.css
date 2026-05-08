@@ -1,5 +1,5 @@
 :root {
-    --bg-color: #C41726;
+    --bg-color: #BA0001;
     --text-primary: #ffffff;
     --text-secondary: #fecaca;
     --accent: #ffffff; 
@@ -30,21 +30,21 @@ h1, h2, h3, .logo {
     top: 0; left: 0; width: 100vw; height: 100vh;
     z-index: -1;
     overflow: hidden;
-    background: radial-gradient(circle at 50% 0%, #D9252D 0%, var(--bg-color) 80%);
+    background: radial-gradient(circle at 50% 0%, #D10001 0%, var(--bg-color) 80%);
     will-change: auto;
 }
 
 .blob {
     position: absolute;
     border-radius: 50%;
-    filter: blur(60px); /* Reduced from 100px */
+    filter: blur(60px);
     opacity: 0.5;
     will-change: transform;
 }
 
-.blob-1 { width: 400px; height: 400px; background: #8E1017; top: -10%; left: -10%; animation: float 25s infinite alternate ease-in-out; }
-.blob-2 { width: 350px; height: 350px; background: #D9252D; bottom: 10%; right: -5%; animation: float 25s infinite alternate ease-in-out; animation-delay: -8s; }
-.blob-3 { width: 250px; height: 250px; background: #7A0D13; top: 40%; left: 40%; animation: float 25s infinite alternate ease-in-out; animation-delay: -16s; }
+.blob-1 { width: 400px; height: 400px; background: #8A0001; top: -10%; left: -10%; animation: float 25s infinite alternate ease-in-out; }
+.blob-2 { width: 350px; height: 350px; background: #D10001; bottom: 10%; right: -5%; animation: float 25s infinite alternate ease-in-out; animation-delay: -8s; }
+.blob-3 { width: 250px; height: 250px; background: #750001; top: 40%; left: 40%; animation: float 25s infinite alternate ease-in-out; animation-delay: -16s; }
 
 @keyframes float {
     0% { transform: translate3d(0, 0, 0) scale(1); }

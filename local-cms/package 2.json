@@ -1,0 +1,19 @@
+{
+  "name": "local-cms",
+  "version": "1.0.0",
+  "description": "Local backend for managing static site",
+  "main": "api/server.js",
+  "scripts": {
+    "start": "node api/server.js",
+    "dev": "nodemon api/server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "gray-matter": "^4.0.3",
+    "simple-git": "^3.24.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}

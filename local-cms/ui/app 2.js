@@ -82,27 +82,7 @@ async function loadPage() {
                     storageManager: false,
                     plugins: ['gjs-preset-webpage'],
                     canvas: {
-                        styles: ['/preview/style.css'],
-                        scripts: [],
-                        frameWrapperAttributes: {
-                            style: 'overflow: scroll;'
-                        }
-                    },
-                    deviceManager: {
-                        devices: [{
-                            name: 'Desktop',
-                            width: '1400px',
-                        }, {
-                            name: 'Tablet',
-                            width: '768px',
-                        }, {
-                            name: 'Mobile',
-                            width: '375px',
-                        }]
-                    },
-                    assetManager: {
-                        upload: `${API_BASE}/upload`,
-                        uploadName: 'files'
+                        styles: ['/preview/style.css']
                     }
                 });
                 
@@ -120,16 +100,11 @@ async function loadPage() {
     } catch (e) { console.error('Error loading page:', e); }
 }
 
-// Sync Textarea -> GrapesJS (typing + paste)
-function syncTextareaToEditor() {
+// Sync Textarea -> GrapesJS
+document.getElementById('page-content').addEventListener('input', (e) => {
     if (editor) {
-        editor.setComponents(document.getElementById('page-content').value);
+        editor.setComponents(e.target.value);
     }
-}
-document.getElementById('page-content').addEventListener('input', syncTextareaToEditor);
-document.getElementById('page-content').addEventListener('paste', (e) => {
-    // Allow the paste to complete first, then sync
-    setTimeout(syncTextareaToEditor, 50);
 });
 
 // Save Page

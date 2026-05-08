@@ -1,5 +1,5 @@
 :root {
-    --bg-dark: #BA0001;
+    --bg-dark: #0f172a;
     --bg-panel: #1e293b;
     --text-main: #f8fafc;
     --text-muted: #94a3b8;
@@ -143,55 +143,10 @@ input:focus, textarea:focus, select:focus { outline: none; border-color: var(--p
     background: #000;
     border: 1px solid var(--border);
     border-radius: 0.5rem;
-    overflow: auto;
+    overflow: hidden;
     position: relative;
     display: flex;
     flex-direction: column;
-}
-
-#gjs {
-    overflow: auto !important;
-}
-
-/* GrapesJS canvas scrollbars */
-.gjs-cv-canvas {
-    overflow: auto !important;
-    width: 100% !important;
-    height: 100% !important;
-}
-
-.gjs-frame-wrapper {
-    overflow: scroll !important;
-    width: 100% !important;
-    height: 100% !important;
-}
-
-.gjs-frame {
-    width: 1400px !important;
-    min-width: 100%;
-}
-
-/* Force scrollbars to always show */
-.gjs-cv-canvas::-webkit-scrollbar,
-.gjs-frame-wrapper::-webkit-scrollbar {
-    width: 12px;
-    height: 12px;
-}
-
-.gjs-cv-canvas::-webkit-scrollbar-track,
-.gjs-frame-wrapper::-webkit-scrollbar-track {
-    background: var(--bg-dark);
-}
-
-.gjs-cv-canvas::-webkit-scrollbar-thumb,
-.gjs-frame-wrapper::-webkit-scrollbar-thumb {
-    background: var(--border);
-    border-radius: 6px;
-}
-
-.gjs-cv-canvas::-webkit-scrollbar-thumb:hover,
-.gjs-frame-wrapper::-webkit-scrollbar-thumb:hover {
-    background: var(--text-muted);
 }
 
 /* Device Toolbar (Mock) */

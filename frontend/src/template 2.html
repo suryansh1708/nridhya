@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{PAGE_TITLE}} - {{SITE_TITLE}}</title>
+    <meta name="description" content="{{SITE_DESC}}">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Premium Animated Background -->
+    <div class="bg-mesh">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <!-- Glassmorphism Navbar -->
+    <nav class="glass-nav">
+        <div class="nav-content">
+            <div class="logo">{{SITE_TITLE}}</div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="#" class="btn-primary">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <main class="container">
+        <article class="glass-card page-content">
+            {{CONTENT}}
+        </article>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 {{SITE_TITLE}}. Built with local-first static architecture.</p>
+    </footer>
+</body>
+</html>
