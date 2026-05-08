@@ -10,6 +10,14 @@ from pathlib import Path
 from PIL import Image, ImageOps
 import shutil
 
+# Enable HEIC support
+try:
+    from pillow_heif import register_heif_opener
+    register_heif_opener()
+    HEIC_SUPPORTED = True
+except ImportError:
+    HEIC_SUPPORTED = False
+
 CONTENT_IMAGES = Path(__file__).parent / "content" / "images"
 DIST_IMAGES = Path(__file__).parent / "dist" / "images"
 
@@ -26,10 +34,10 @@ def optimize_image(src_path: Path, dest_dir: Path) -> dict:
     suffix = src_path.suffix.lower()
     
     if suffix == ".heic":
-        print(f"  Skipping HEIC file: {filename}")
-        return stats
-    
-    if suffix not in [".jpg", ".jpeg", ".png", ".webp"]:
+        if not HEIC_SUPPORTED:
+            print(f"  Skipping HEIC file (no support): {filename}")
+            return stats
+    elif suffix not in [".jpg", ".jpeg", ".png", ".webp"]:
         shutil.copy2(src_path, dest_dir / filename)
         return stats
     
