@@ -55,7 +55,7 @@ h1, h2, h3, .logo {
 .glass-nav {
     position: fixed;
     top: 0; left: 0; width: 100%;
-    background: #700001;
+    background: #8A0001;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -513,7 +513,7 @@ footer {
     .glass-nav {
         backdrop-filter: none;
         -webkit-backdrop-filter: none;
-        background: #700001;
+        background: #8A0001;
     }
     .blob {
         filter: blur(40px);
