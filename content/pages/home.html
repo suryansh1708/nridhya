@@ -8,10 +8,21 @@ title: Home
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nridhya - Premium Kathak Institute by Lawanya Gupta</title>
     <meta name="description" content="Premium Kathak Institute by Lawanya Gupta">
+    
+    <!-- Preload critical assets -->
+    <link rel="preload" href="style.css" as="style">
+    <link rel="preload" href="images/gallery/IMG_0646.webp" as="image">
+    
     <link rel="stylesheet" href="style.css">
-    <!-- Premium Fonts -->
+    
+    <!-- Fonts: display=swap for non-blocking load -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <!-- Font Awesome: load async -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'">
+    
     <style>
       @font-face {
         font-family: 'Amoresa';
@@ -47,7 +58,10 @@ title: Home
         <div class="template-hero">
             <div class="template-hero-text">
                 <h1 style="margin: 0; margin-bottom: 2rem;">
-                    <img src="images/learn_art_text_transparent.png" alt="Learn the Art of Dance" style="max-width: 100%; height: auto; max-height: 120px;">
+                    <picture>
+                        <source srcset="images/learn_art_text_transparent.webp" type="image/webp">
+                        <img src="images/learn_art_text_transparent.jpg" alt="Learn the Art of Dance" style="max-width: 100%; height: auto; max-height: 120px;" width="1461" height="217">
+                    </picture>
                 </h1>
                 <div style="margin-top: 2rem;">
                     <a href="#about" class="btn-primary" style="margin-right: 1rem;">Discover Her Journey</a>
@@ -55,13 +69,21 @@ title: Home
                 </div>
             </div>
             <div class="template-hero-image">
-                <img src="images/gallery/IMG_0646.JPG" alt="Kathak Dance" style="width: 100%; height: 100%; object-fit: contain;">
+                <picture>
+                    <source srcset="images/gallery/IMG_0646.webp" type="image/webp">
+                    <img src="images/gallery/IMG_0646.jpg" alt="Kathak Dance" loading="eager" decoding="async" style="width: 100%; height: 100%; object-fit: contain;" width="1280" height="1920">
+                </picture>
             </div>
         </div>
 
         <!-- ===== ABOUT: TEMPLATE LAYOUT ===== -->
         <section id="about" class="template-section">
-            <div class="template-image" style="background-image: url('images/gallery/DSC09119.JPEG');"></div>
+            <div class="template-image">
+                <picture>
+                    <source srcset="images/gallery/DSC09119.webp" type="image/webp">
+                    <img src="images/gallery/DSC09119.jpg" alt="About Lawanya" loading="lazy" decoding="async" style="width: 100%; height: 100%; object-fit: cover;">
+                </picture>
+            </div>
             <div class="template-text">
                 <h2 style="font-size: 3rem; color: var(--accent-gold); margin-bottom: 1.5rem; text-transform: uppercase;">About Lawanya Gupta</h2>
                 <p style="font-size: 1.2rem; margin-bottom: 1.5rem;">Lawanya is a disciple of Pt. Jai Kishan Maharaj. She is a committed Kathak dancer and artistic director of Nridhya with a deep understanding of Indian classical dance traditions. Her artistry is deeply rooted in the illustrious tradition of the <strong>Lucknow Gharana</strong>.</p>
@@ -81,19 +103,34 @@ title: Home
                 NOTABLE<br>HIGHLIGHTS
             </div>
             <div class="template-quote-right">
-                <div class="template-circle-img" style="background-image: url('images/gallery/DSC05199.JPEG');"></div>
+                <picture>
+                    <source srcset="images/gallery/DSC05199.webp" type="image/webp">
+                    <img src="images/gallery/DSC05199.jpg" alt="Highlights" loading="lazy" decoding="async" class="template-circle-img-el">
+                </picture>
             </div>
         </section>
 
         <!-- ===== GALLERY STRIP: TEMPLATE LAYOUT ===== -->
         <section class="template-gallery">
-            <div class="template-gallery-item" style="background-image: url('images/gallery/DSC09421.JPEG');">
+            <div class="template-gallery-item">
+                <picture>
+                    <source srcset="images/gallery/DSC09421.webp" type="image/webp">
+                    <img src="images/gallery/DSC09421.jpg" alt="Rhythm" loading="lazy" decoding="async">
+                </picture>
                 <div class="template-gallery-text">RHYTHM</div>
             </div>
-            <div class="template-gallery-item" style="background-image: url('images/gallery/DSC09343.JPEG');">
+            <div class="template-gallery-item">
+                <picture>
+                    <source srcset="images/gallery/DSC09343.webp" type="image/webp">
+                    <img src="images/gallery/DSC09343.jpg" alt="Grace" loading="lazy" decoding="async">
+                </picture>
                 <div class="template-gallery-text">GRACE</div>
             </div>
-            <div class="template-gallery-item" style="background-image: url('images/gallery/DSC09366.JPEG');">
+            <div class="template-gallery-item">
+                <picture>
+                    <source srcset="images/gallery/DSC09366.webp" type="image/webp">
+                    <img src="images/gallery/DSC09366.jpg" alt="Tradition" loading="lazy" decoding="async">
+                </picture>
                 <div class="template-gallery-text">TRADITION</div>
             </div>
         </section>
@@ -132,19 +169,22 @@ title: Home
           </div>
         </section>
 
-        <!-- ===== VIDEOS ===== -->
+        <!-- ===== VIDEOS (Lazy loaded) ===== -->
         <section id="videos" class="about-section">
           <div class="glass-card" style="text-align:center;">
             <h2>Watch Lawanya Perform</h2>
             <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap:1.5rem; margin-top:2rem;">
-              <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:12px;">
-                <iframe allowfullscreen src="https://www.youtube.com/embed/QIiqldseY58?" style="position:absolute; top:0; left:0; width:100%; height:100%; border:none;"></iframe>
+              <div class="video-container" data-video-id="QIiqldseY58">
+                <img src="https://img.youtube.com/vi/QIiqldseY58/hqdefault.jpg" alt="Video thumbnail" loading="lazy" class="video-thumb">
+                <button class="play-btn" aria-label="Play video">▶</button>
               </div>
-              <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:12px;">
-                <iframe allowfullscreen src="https://www.youtube.com/embed/8z7Kgy7VffU?" style="position:absolute; top:0; left:0; width:100%; height:100%; border:none;"></iframe>
+              <div class="video-container" data-video-id="8z7Kgy7VffU">
+                <img src="https://img.youtube.com/vi/8z7Kgy7VffU/hqdefault.jpg" alt="Video thumbnail" loading="lazy" class="video-thumb">
+                <button class="play-btn" aria-label="Play video">▶</button>
               </div>
-              <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:12px;">
-                <iframe allowfullscreen src="https://www.youtube.com/embed/9MmqjlQ0T5s?" style="position:absolute; top:0; left:0; width:100%; height:100%; border:none;"></iframe>
+              <div class="video-container" data-video-id="9MmqjlQ0T5s">
+                <img src="https://img.youtube.com/vi/9MmqjlQ0T5s/hqdefault.jpg" alt="Video thumbnail" loading="lazy" class="video-thumb">
+                <button class="play-btn" aria-label="Play video">▶</button>
               </div>
             </div>
           </div>
@@ -167,9 +207,9 @@ title: Home
               <div>
                 <h3 style="color:#fbbf24;"><i class="fa-solid fa-share-nodes" style="margin-right:0.5rem;"></i>Follow Us</h3>
                 <div style="display:flex; gap:1.5rem; justify-content:center; margin-top:1rem; font-size:1.5rem;">
-                  <a href="https://www.facebook.com/Nridhya-101903219594951" target="_blank" style="color:#fff; transition:color 0.3s;"><i class="fa-brands fa-facebook"></i></a>
-                  <a href="https://www.youtube.com/@NridhyaAcademy" target="_blank" style="color:#fff; transition:color 0.3s;"><i class="fa-brands fa-youtube"></i></a>
-                  <a href="https://www.instagram.com/nridhya/" target="_blank" style="color:#fff; transition:color 0.3s;"><i class="fa-brands fa-instagram"></i></a>
+                  <a href="https://www.facebook.com/Nridhya-101903219594951" target="_blank" rel="noopener" style="color:#fff; transition:color 0.3s;"><i class="fa-brands fa-facebook"></i></a>
+                  <a href="https://www.youtube.com/@NridhyaAcademy" target="_blank" rel="noopener" style="color:#fff; transition:color 0.3s;"><i class="fa-brands fa-youtube"></i></a>
+                  <a href="https://www.instagram.com/nridhya/" target="_blank" rel="noopener" style="color:#fff; transition:color 0.3s;"><i class="fa-brands fa-instagram"></i></a>
                 </div>
               </div>
             </div>
@@ -187,5 +227,15 @@ title: Home
             <p>&copy; 2026 Nridhya. All Rights Reserved.</p>
         </div>
     </footer>
+
+    <!-- Lazy load YouTube videos on click -->
+    <script>
+    document.querySelectorAll('.video-container').forEach(container => {
+        container.addEventListener('click', function() {
+            const videoId = this.dataset.videoId;
+            this.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1" frameborder="0" allowfullscreen allow="autoplay; encrypted-media" style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>`;
+        });
+    });
+    </script>
 </body>
 </html>
