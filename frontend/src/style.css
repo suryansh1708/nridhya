@@ -51,14 +51,14 @@ h1, h2, h3, .logo {
     100% { transform: translate3d(80px, 80px, 0) scale(1.05); }
 }
 
-/* Optimized Navigation - reduced blur */
+/* Optimized Navigation - darker red menu bar */
 .glass-nav {
     position: fixed;
     top: 0; left: 0; width: 100%;
-    background: rgba(20, 0, 0, 0.7);
+    background: #700001;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--glass-border);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     z-index: 100;
 }
 
@@ -468,32 +468,75 @@ footer {
 }
 
 @media (max-width: 768px) {
-    .nav-content { flex-direction: column; padding: 1rem; }
-    .nav-links { margin-top: 1rem; display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; }
-    .nav-links a { margin-left: 0; font-size: 0.8rem; }
+    .nav-content { 
+        flex-direction: column; 
+        padding: 0.75rem 1rem;
+        gap: 0.5rem;
+    }
+    .logo { font-size: 1.5rem; }
+    .nav-links { 
+        margin-top: 0.5rem; 
+        display: flex; 
+        flex-wrap: wrap; 
+        justify-content: center; 
+        gap: 0.5rem 1rem;
+    }
+    .nav-links a { 
+        margin-left: 0; 
+        font-size: 0.75rem;
+        padding: 0.5rem 0.75rem;
+        border-radius: 4px;
+        background: rgba(255,255,255,0.05);
+    }
+    .nav-links a:active {
+        background: rgba(255,255,255,0.15);
+    }
+    .btn-primary-nav {
+        padding: 0.5rem 1rem;
+        font-size: 0.75rem;
+    }
     
-    .hero h1 { font-size: 3rem; }
-    .subtitle { font-size: 1.1rem; }
+    .hero { padding: 0 1.5rem; padding-top: 120px; }
+    .hero h1 { font-size: 2.5rem; line-height: 1.2; }
+    .subtitle { font-size: 1rem; margin-bottom: 2rem; }
     
-    .about-section, .institute-section { padding: 4rem 1.5rem; }
-    .glass-card { padding: 2rem; }
-    .glass-card h2 { font-size: 2.2rem; }
-    .glass-card p, .glass-card ul { font-size: 1rem; }
+    .about-section, .institute-section { padding: 3rem 1.5rem; }
+    .glass-card { padding: 1.5rem; }
+    .glass-card h2 { font-size: 1.8rem; }
+    .glass-card p, .glass-card ul { font-size: 0.95rem; }
+    
+    .template-hero-text, .template-text { padding: 2rem 1.5rem; }
+    .template-quote-center { font-size: 2rem; }
+    .template-gallery-text { font-size: 1.5rem; letter-spacing: 2px; }
     
     /* Disable blur on mobile for performance */
     .glass-nav {
         backdrop-filter: none;
         -webkit-backdrop-filter: none;
-        background: rgba(20, 0, 0, 0.9);
+        background: #700001;
     }
     .blob {
         filter: blur(40px);
     }
+    
+    footer { padding: 3rem 1.5rem 1.5rem; }
+    .footer-content h3 { font-size: 1.5rem; }
 }
 
 @media (max-width: 480px) {
-    .hero h1 { font-size: 2.5rem; }
-    .btn-primary, .btn-secondary { padding: 0.8rem 1.5rem; font-size: 1rem; }
+    .hero h1 { font-size: 2rem; }
+    .hero { padding-top: 140px; }
+    .subtitle { font-size: 0.9rem; }
+    .btn-primary, .btn-secondary { 
+        padding: 0.75rem 1.25rem; 
+        font-size: 0.9rem;
+        width: 100%;
+        text-align: center;
+    }
+    .nav-links a { font-size: 0.7rem; padding: 0.4rem 0.6rem; }
+    .glass-card h2 { font-size: 1.5rem; }
+    .template-quote-center { font-size: 1.5rem; }
+    .template-quote-right picture { width: 150px; height: 150px; }
 }
 
 /* Reduce motion for users who prefer it */
