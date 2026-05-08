@@ -13,6 +13,8 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../ui')));
 app.use('/preview', express.static(path.join(__dirname, '../../dist')));
+// Serve optimized images from dist first, fallback to content/images
+app.use('/images', express.static(path.join(__dirname, '../../dist/images')));
 app.use('/images', express.static(path.join(__dirname, '../../content/images')));
 
 // Configure Multer for Image Uploads
