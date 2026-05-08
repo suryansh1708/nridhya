@@ -17,7 +17,6 @@ body {
     background-color: var(--bg-color);
     color: var(--text-primary);
     min-height: 100vh;
-    overflow-x: hidden;
     position: relative;
     line-height: 1.6;
 }
@@ -181,13 +180,30 @@ h1, h2, h3, .logo {
 }
 
 .glass-card {
-    background: var(--glass-bg);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid var(--glass-border);
-    border-radius: 8px;
+    background: var(--bg-color);
+    border: none;
+    border-radius: 12px;
     padding: 4rem;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.glass-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.minimal-card {
+    padding: 2rem;
+    background: var(--bg-color);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 12px;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.minimal-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    border-color: rgba(251, 191, 36, 0.3);
 }
 
 .glass-card h2 {
@@ -240,4 +256,138 @@ footer {
 @media (max-width: 480px) {
     .hero h1 { font-size: 2.5rem; }
     .btn-primary, .btn-secondary { padding: 0.8rem 1.5rem; font-size: 1rem; }
+}
+
+/* Template Inspiration Layouts */
+.template-hero {
+    display: flex;
+    align-items: stretch;
+    min-height: 80vh;
+    padding-top: 80px; /* for nav */
+}
+.template-hero-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem;
+}
+.template-hero-image {
+    flex: 1;
+    background-size: cover;
+    background-position: center;
+}
+
+.template-section {
+    display: flex;
+    align-items: stretch;
+    min-height: 60vh;
+}
+.template-image {
+    flex: 1;
+    background-size: cover;
+    background-position: center;
+}
+.template-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 6rem;
+}
+
+.template-quote-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6rem 4rem;
+    min-height: 60vh;
+}
+.template-quote-left {
+    flex: 1;
+    padding-right: 2rem;
+}
+.template-quote-center {
+    flex: 1;
+    text-align: center;
+    font-size: 3rem;
+    font-family: 'Amoresa', 'Playfair Display', cursive;
+    color: var(--accent-gold);
+    line-height: 1.2;
+}
+.template-quote-right {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+.template-circle-img {
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 0 40px rgba(0,0,0,0.5);
+}
+
+.template-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    min-height: 70vh;
+}
+.template-gallery-item {
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: transform 0.5s;
+}
+.template-gallery-item:hover {
+    transform: scale(1.02);
+    z-index: 10;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+}
+.template-gallery-item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+}
+.template-gallery-text {
+    position: relative;
+    z-index: 2;
+    font-size: 2.5rem;
+    color: rgba(255,255,255,0.9);
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+}
+
+.template-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+    padding: 2rem;
+}
+.template-grid-item {
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 8px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+@media (max-width: 900px) {
+    .template-hero, .template-section, .template-quote-section {
+        flex-direction: column;
+    }
+    .template-hero-image, .template-image {
+        min-height: 50vh;
+    }
+    .template-text { padding: 3rem 2rem; }
+    .template-quote-section { padding: 4rem 2rem; gap: 3rem; }
+    .template-gallery { grid-template-columns: 1fr; height: auto; }
+    .template-gallery-item { height: 40vh; }
 }

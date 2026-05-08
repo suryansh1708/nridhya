@@ -104,11 +104,16 @@ async function loadPage() {
     } catch (e) { console.error('Error loading page:', e); }
 }
 
-// Sync Textarea -> GrapesJS
-document.getElementById('page-content').addEventListener('input', (e) => {
+// Sync Textarea -> GrapesJS (typing + paste)
+function syncTextareaToEditor() {
     if (editor) {
-        editor.setComponents(e.target.value);
+        editor.setComponents(document.getElementById('page-content').value);
     }
+}
+document.getElementById('page-content').addEventListener('input', syncTextareaToEditor);
+document.getElementById('page-content').addEventListener('paste', (e) => {
+    // Allow the paste to complete first, then sync
+    setTimeout(syncTextareaToEditor, 50);
 });
 
 // Save Page

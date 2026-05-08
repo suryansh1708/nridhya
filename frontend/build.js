@@ -26,12 +26,22 @@ async function buildSite() {
         const distImagesDir = path.join(DIST_DIR, 'images');
         try { await fs.mkdir(distImagesDir, { recursive: true }); } catch (e) {}
         try {
-            const images = await fs.readdir(imagesDir);
-            for (const img of images) {
-                await fs.copyFile(path.join(imagesDir, img), path.join(distImagesDir, img));
+            await fs.cp(imagesDir, distImagesDir, { recursive: true });
+        } catch (e) {
+            console.log("No images found or error copying images:", e);
+        }
+
+        // Copy Fonts
+        const fontsDir = path.join(CONTENT_DIR, 'fonts');
+        const distFontsDir = path.join(DIST_DIR, 'fonts');
+        try { await fs.mkdir(distFontsDir, { recursive: true }); } catch (e) {}
+        try {
+            const fonts = await fs.readdir(fontsDir);
+            for (const font of fonts) {
+                await fs.copyFile(path.join(fontsDir, font), path.join(distFontsDir, font));
             }
         } catch (e) {
-            console.log("No images found or error copying images.");
+            console.log("No fonts found or error copying fonts.");
         }
 
         // 4. Copy CSS
