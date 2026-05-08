@@ -4,7 +4,7 @@
     --text-secondary: #fecaca;
     --accent: #ffffff; 
     --accent-hover: #f1f5f9;
-    --accent-gold: #fbbf24;
+    --accent-gold: #F3CF91;
     --glass-bg: rgba(0, 0, 0, 0.2);
     --glass-border: rgba(255, 255, 255, 0.2);
 }
@@ -115,7 +115,7 @@ h1, h2, h3, .logo {
     font-size: 5rem;
     font-weight: 700;
     margin-bottom: 1rem;
-    background: linear-gradient(to right, #fecaca, #fbbf24);
+    background: linear-gradient(to right, #fecaca, #F3CF91);
     -webkit-background-clip: text;
     color: transparent;
     text-shadow: 0 10px 30px rgba(220, 38, 38, 0.3);
