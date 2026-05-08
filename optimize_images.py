@@ -35,31 +35,40 @@ def optimize_image(src_path: Path, dest_dir: Path) -> dict:
     
     try:
         with Image.open(src_path) as img:
-            if img.mode in ("RGBA", "P"):
-                img = img.convert("RGB")
-            
             original_size = img.size
+            has_transparency = img.mode in ("RGBA", "P") and "transparency" in img.info or img.mode == "RGBA"
             
             if max(img.size) > MAX_DIMENSION:
                 ratio = MAX_DIMENSION / max(img.size)
                 new_size = (int(img.size[0] * ratio), int(img.size[1] * ratio))
                 img = img.resize(new_size, Image.Resampling.LANCZOS)
             
-            jpeg_path = dest_dir / f"{stem}.jpg"
-            img.save(jpeg_path, "JPEG", quality=JPEG_QUALITY, optimize=True)
+            # For transparent images, keep PNG format
+            if has_transparency or suffix == ".png":
+                out_path = dest_dir / f"{stem}.png"
+                img.save(out_path, "PNG", optimize=True)
+                webp_path = dest_dir / f"{stem}.webp"
+                img.save(webp_path, "WEBP", quality=WEBP_QUALITY, lossless=True)
+                format_name = "PNG"
+            else:
+                # Convert to RGB for JPEG
+                if img.mode in ("RGBA", "P"):
+                    img = img.convert("RGB")
+                out_path = dest_dir / f"{stem}.jpg"
+                img.save(out_path, "JPEG", quality=JPEG_QUALITY, optimize=True)
+                webp_path = dest_dir / f"{stem}.webp"
+                img.save(webp_path, "WEBP", quality=WEBP_QUALITY)
+                format_name = "JPG"
             
-            webp_path = dest_dir / f"{stem}.webp"
-            img.save(webp_path, "WEBP", quality=WEBP_QUALITY)
-            
-            new_size_jpg = jpeg_path.stat().st_size
+            new_size_out = out_path.stat().st_size
             new_size_webp = webp_path.stat().st_size
             
-            stats["new_size_jpg"] = new_size_jpg
+            stats["new_size_out"] = new_size_out
             stats["new_size_webp"] = new_size_webp
             stats["saved"] = stats["original_size"] - new_size_webp
             stats["dimensions"] = f"{original_size[0]}x{original_size[1]} -> {img.size[0]}x{img.size[1]}"
             
-            print(f"  {filename}: {stats['original_size']//1024}KB -> JPG:{new_size_jpg//1024}KB, WebP:{new_size_webp//1024}KB ({stats['dimensions']})")
+            print(f"  {filename}: {stats['original_size']//1024}KB -> {format_name}:{new_size_out//1024}KB, WebP:{new_size_webp//1024}KB ({stats['dimensions']})")
             
     except Exception as e:
         print(f"  Error processing {filename}: {e}")
