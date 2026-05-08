@@ -7,7 +7,7 @@ Target: <300KB per image, max 1920px dimension
 
 import os
 from pathlib import Path
-from PIL import Image
+from PIL import Image, ImageOps
 import shutil
 
 CONTENT_IMAGES = Path(__file__).parent / "content" / "images"
@@ -35,6 +35,9 @@ def optimize_image(src_path: Path, dest_dir: Path) -> dict:
     
     try:
         with Image.open(src_path) as img:
+            # Apply EXIF orientation to fix rotated images
+            img = ImageOps.exif_transpose(img)
+            
             original_size = img.size
             has_transparency = img.mode in ("RGBA", "P") and "transparency" in img.info or img.mode == "RGBA"
             

@@ -316,6 +316,11 @@ footer {
     display: flex;
     justify-content: flex-end;
 }
+.template-quote-right picture {
+    width: 350px;
+    height: 350px;
+    flex-shrink: 0;
+}
 .template-circle-img-el {
     width: 350px;
     height: 350px;
