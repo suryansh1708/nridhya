@@ -237,8 +237,8 @@ footer {
 .template-hero {
     display: flex;
     align-items: stretch;
-    min-height: 80vh;
-    padding-top: 80px;
+    min-height: 100vh;
+    padding-top: 0;
 }
 .template-hero-text {
     flex: 1;
@@ -246,6 +246,7 @@ footer {
     flex-direction: column;
     justify-content: center;
     padding: 4rem;
+    padding-top: 100px;
 }
 .template-hero-image {
     flex: 1;
@@ -253,7 +254,7 @@ footer {
     align-items: stretch;
     justify-content: center;
     overflow: hidden;
-    min-height: 400px;
+    min-height: 100vh;
 }
 .template-hero-image picture {
     width: 100%;
