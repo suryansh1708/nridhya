@@ -21,6 +21,19 @@ async function buildSite() {
         // 3. Load HTML template
         const templateHtml = await fs.readFile(path.join(SRC_DIR, 'template.html'), 'utf8');
 
+        // Copy Images
+        const imagesDir = path.join(CONTENT_DIR, 'images');
+        const distImagesDir = path.join(DIST_DIR, 'images');
+        try { await fs.mkdir(distImagesDir, { recursive: true }); } catch (e) {}
+        try {
+            const images = await fs.readdir(imagesDir);
+            for (const img of images) {
+                await fs.copyFile(path.join(imagesDir, img), path.join(distImagesDir, img));
+            }
+        } catch (e) {
+            console.log("No images found or error copying images.");
+        }
+
         // 4. Copy CSS
         const cssContent = await fs.readFile(path.join(SRC_DIR, 'style.css'), 'utf8');
         await fs.writeFile(path.join(DIST_DIR, 'style.css'), cssContent);

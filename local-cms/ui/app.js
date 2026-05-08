@@ -83,6 +83,10 @@ async function loadPage() {
                     plugins: ['gjs-preset-webpage'],
                     canvas: {
                         styles: ['/preview/style.css']
+                    },
+                    assetManager: {
+                        upload: `${API_BASE}/upload`,
+                        uploadName: 'files'
                     }
                 });
                 

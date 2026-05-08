@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
+const multer = require('multer');
 const { getCollection, getEntry, updateEntry, deleteEntry } = require('./modules/fsStorage');
 const { triggerBuild } = require('./modules/buildOrchestrator');
 const { commitChanges, pushChanges } = require('./modules/gitSync');
@@ -12,6 +13,32 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../ui')));
 app.use('/preview', express.static(path.join(__dirname, '../../dist')));
+app.use('/images', express.static(path.join(__dirname, '../../content/images')));
+
+// Configure Multer for Image Uploads
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, path.join(__dirname, '../../content/images'));
+    },
+    filename: (req, file, cb) => {
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+        cb(null, uniqueSuffix + '-' + file.originalname.replace(/\s+/g, '-'));
+    }
+});
+const upload = multer({ storage });
+
+// --- Image Upload Endpoint (For GrapesJS) ---
+app.post('/api/upload', upload.array('files'), (req, res) => {
+    try {
+        if (!req.files || req.files.length === 0) {
+            return res.status(400).json({ error: 'No files uploaded' });
+        }
+        const uploadedUrls = req.files.map(f => `/images/${f.filename}`);
+        res.json({ data: uploadedUrls });
+    } catch (e) {
+        res.status(500).json({ error: e.message });
+    }
+});
 
 // --- Content API Endpoints ---
 
