@@ -3,54 +3,10 @@ title: Home
 ---
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nridhya - Premium Kathak Institute by Lawanya Gupta</title>
-    <meta name="description" content="Premium Kathak Institute by Lawanya Gupta">
-    
-    <!-- Preload critical assets -->
-    <link rel="preload" href="style.css" as="style">
-    <link rel="preload" href="images/gallery/IMG_0646.webp" as="image">
-    
-    <link rel="stylesheet" href="style.css">
-    
-    <!-- Fonts: display=swap for non-blocking load -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome: load async -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all'">
-    
-    <style>
-      @font-face {
-        font-family: 'Amoresa';
-        src: url('fonts/amoresa.woff2') format('woff2');
-        font-weight: normal;
-        font-style: normal;
-        font-display: swap;
-      }
-    </style>
-</head>
+{{> head}}
 <body>
-    <div class="bg-mesh" data-gjs-locked="true">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-        <div class="blob blob-3"></div>
-    </div>
-
-    <nav class="glass-nav" data-gjs-type="header">
-        <div class="nav-content">
-            <a href="home.html" class="logo" style="text-decoration: none;">NRIDHYA</a>
-            <div class="nav-links">
-                <a href="home.html">About us</a>
-                <a href="classes.html">Our Classes</a>
-                <a href="register.html">Register Now!</a>
-                <a href="contact.html" class="btn-primary-nav">Contact</a>
-            </div>
-        </div>
-    </nav>
+    {{> bg-mesh}}
+    {{> nav}}
 
     <main class="page-content" id="main-content">
 
@@ -165,6 +121,11 @@ title: Home
                 <div style="width:40px; height:3px; background:#fbbf24; margin:0 auto 1rem;"></div>
                 <p>Comprehensive training rooted in tradition — from intricate footwork to emotive abhinaya.</p>
               </div>
+              <div class="minimal-card">
+                <h3 style="color:#fbbf24; margin-bottom:0.5rem;">Stage Performance Opportunities</h3>
+                <div style="width:40px; height:3px; background:#fbbf24; margin:0 auto 1rem;"></div>
+                <p>Showcase your talent at cultural events, festivals, and recitals — building confidence and stage presence.</p>
+              </div>
             </div>
           </div>
         </section>
@@ -191,42 +152,11 @@ title: Home
         </section>
 
         <!-- ===== CONTACT STRIP ===== -->
-        <section id="contact-strip" class="about-section">
-          <div class="glass-card" style="text-align:center;">
-            <h2>Contact</h2>
-            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:2rem; margin-top:2rem;">
-              <div>
-                <h3 style="color:#fbbf24;"><i class="fa-solid fa-phone" style="margin-right:0.5rem;"></i>Phone</h3>
-                <p>+91-8153933233</p>
-                <p>+91-9643023456</p>
-              </div>
-              <div>
-                <h3 style="color:#fbbf24;"><i class="fa-solid fa-location-dot" style="margin-right:0.5rem;"></i>Studio Address</h3>
-                <p>SD-23 Sadarpur, Sector-45, Noida, Gautam Buddha Nagar, Uttar Pradesh 201303</p>
-              </div>
-              <div>
-                <h3 style="color:#fbbf24;"><i class="fa-solid fa-share-nodes" style="margin-right:0.5rem;"></i>Follow Us</h3>
-                <div style="display:flex; gap:1.5rem; justify-content:center; margin-top:1rem; font-size:1.5rem;">
-                  <a href="https://www.facebook.com/Nridhya-101903219594951" target="_blank" rel="noopener" style="color:#fff; transition:color 0.3s;"><i class="fa-brands fa-facebook"></i></a>
-                  <a href="https://www.youtube.com/@NridhyaAcademy" target="_blank" rel="noopener" style="color:#fff; transition:color 0.3s;"><i class="fa-brands fa-youtube"></i></a>
-                  <a href="https://www.instagram.com/nridhya/" target="_blank" rel="noopener" style="color:#fff; transition:color 0.3s;"><i class="fa-brands fa-instagram"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        {{> contact-strip}}
 
     </main>
 
-    <footer data-gjs-type="footer">
-        <div class="footer-content">
-            <h3>Nridhya</h3>
-            <p>Preserving the legacy of Kathak.</p>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Nridhya. All Rights Reserved.</p>
-        </div>
-    </footer>
+    {{> footer}}
 
     <!-- Lazy load YouTube videos on click -->
     <script>

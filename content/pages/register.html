@@ -3,33 +3,10 @@ title: Register Now
 ---
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register Now - Nridhya</title>
-    <meta name="description" content="Premium Kathak Institute by Lawanya Gupta">
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-</head>
+{{> head}}
 <body>
-    <div class="bg-mesh" data-gjs-locked="true">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-        <div class="blob blob-3"></div>
-    </div>
-
-    <nav class="glass-nav" data-gjs-type="header">
-        <div class="nav-content">
-            <a href="home.html" class="logo" style="text-decoration: none;">NRIDHYA</a>
-            <div class="nav-links">
-                <a href="home.html">About us</a>
-                <a href="classes.html">Our Classes</a>
-                <a href="register.html">Register Now!</a>
-                <a href="contact.html" class="btn-primary-nav">Contact</a>
-            </div>
-        </div>
-    </nav>
+    {{> bg-mesh}}
+    {{> nav}}
 
     <main class="page-content" id="main-content">
 
@@ -68,52 +45,13 @@ title: Register Now
         </section>
 
         <!-- ===== ABOUT NRIDHYA ===== -->
-        <section class="institute-section">
-          <div class="glass-card">
-            <h2 style="text-align:center; font-size:2.5rem;">Nridhya</h2>
-            <div style="width:60px; height:3px; background:#fbbf24; margin:0 auto 2rem;"></div>
-            <p>The vision with which Nridhya was founded is deeply rooted in a commitment to celebrate, preserve, and nurture the rich diversity of India's cultural and artistic heritage. Conceived as a space where tradition and creativity coexist harmoniously, Nridhya seeks to uphold the timeless values of Indian classical arts while engaging with the evolving sensibilities of the contemporary world. Through its work, the institution aspires not only to keep these traditions alive but also to allow them to grow, adapt, and flourish for future generations.</p>
-            <p>At its core, Nridhya is dedicated to research, exploration, and the dissemination of knowledge in the field of Indian performing arts. The institute offers rigorous training and thoughtful artistic mentorship, drawing upon the depth of traditional pedagogy while embracing innovative and modern approaches to learning. By blending the discipline of the guru–shishya parampara with creative experimentation, Nridhya fosters an environment where students are encouraged to develop both technical excellence and individual artistic voice.</p>
-            <p>The curriculum at Nridhya is designed to be integrated, diverse, and immersive, enabling students to evolve not only as skilled performers but also as thoughtful artists and cultural ambassadors. Through a combination of regular classes, workshops, performances, and collaborative explorations, students are guided to expand their understanding of movement, rhythm, expression, and storytelling. This holistic training nurtures confidence, creativity, and a deep sensitivity towards the cultural narratives embedded within the art forms they practice.</p>
-          </div>
-        </section>
+        {{> institute-block}}
 
         <!-- ===== CONTACT STRIP ===== -->
-        <section class="about-section">
-          <div class="glass-card" style="text-align:center;">
-            <h2>Contact</h2>
-            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap:2rem; margin-top:2rem;">
-              <div>
-                <h3 style="color:#fbbf24;"><i class="fa-solid fa-phone" style="margin-right:0.5rem;"></i>Phone</h3>
-                <p>+91 8153933233</p>
-                <p>+91 9643023456</p>
-              </div>
-              <div>
-                <h3 style="color:#fbbf24;"><i class="fa-solid fa-location-dot" style="margin-right:0.5rem;"></i>Studio Address</h3>
-                <p>SD-23 Sadarpur, Sector-45, Noida, Gautam Buddha Nagar, Uttar Pradesh 201303</p>
-              </div>
-              <div>
-                <h3 style="color:#fbbf24;"><i class="fa-solid fa-share-nodes" style="margin-right:0.5rem;"></i>Follow Us</h3>
-                <div style="display:flex; gap:1.5rem; justify-content:center; margin-top:1rem; font-size:1.5rem;">
-                  <a href="https://www.facebook.com/Nridhya-101903219594951" target="_blank" style="color:#fff; transition:color 0.3s;" onmouseover="this.style.color='#fbbf24'" onmouseout="this.style.color='#fff'"><i class="fa-brands fa-facebook"></i></a>
-                  <a href="https://www.youtube.com/@NridhyaAcademy" target="_blank" style="color:#fff; transition:color 0.3s;" onmouseover="this.style.color='#fbbf24'" onmouseout="this.style.color='#fff'"><i class="fa-brands fa-youtube"></i></a>
-                  <a href="https://www.instagram.com/nridhya/" target="_blank" style="color:#fff; transition:color 0.3s;" onmouseover="this.style.color='#fbbf24'" onmouseout="this.style.color='#fff'"><i class="fa-brands fa-instagram"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        {{> contact-strip}}
 
     </main>
 
-    <footer data-gjs-type="footer">
-        <div class="footer-content">
-            <h3>Nridhya</h3>
-            <p>Preserving the legacy of Kathak.</p>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Nridhya. All Rights Reserved.</p>
-        </div>
-    </footer>
+    {{> footer}}
 </body>
 </html>

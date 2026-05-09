@@ -14,44 +14,80 @@ on:
 permissions:
   contents: write
 
+# Cancel in-progress runs for the same branch
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
+
+      # Cache pip dependencies
+      - name: Cache pip
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-pillow
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      # Cache npm dependencies
+      - name: Cache npm
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-npm-${{ hashFiles('frontend/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-npm-
+
+      # Cache optimized images (skip re-processing unchanged images)
+      - name: Cache optimized images
+        uses: actions/cache@v4
+        with:
+          path: dist/images
+          key: ${{ runner.os }}-images-${{ hashFiles('content/images/**') }}
+          restore-keys: |
+            ${{ runner.os }}-images-
 
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
-      - name: Install Python Dependencies
-        run: |
-          pip install pillow pillow-heif
-
-      - name: Optimize Images
-        run: |
-          python optimize_images.py
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
+      - name: Install Python Dependencies
+        run: pip install pillow pillow-heif
+
       - name: Install Node Dependencies
-        run: |
-          cd frontend
-          npm install
+        working-directory: frontend
+        run: npm ci --prefer-offline
+
+      - name: Optimize Images
+        run: python optimize_images.py
+        env:
+          CI: true
 
       - name: Build Static Site
-        run: |
-          cd frontend
-          npm run build
+        working-directory: frontend
+        run: npm run build
+        env:
+          CI: true
+          SKIP_IMAGE_OPTIMIZATION: true  # Already done in previous step
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
-          commit_message: "Deploy production build via GitHub Actions"
+          commit_message: 'deploy: ${{ github.event.head_commit.message }}'
+          # Enable caching at CDN level
+          force_orphan: true
