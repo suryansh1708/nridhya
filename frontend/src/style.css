@@ -494,6 +494,13 @@ footer {
     .template-image {
         min-height: 50vh;
     }
+    /* About Lawanya: title + paragraphs first, photo below on narrow screens */
+    section#about.template-section .template-text {
+        order: 1;
+    }
+    section#about.template-section .template-image {
+        order: 2;
+    }
     .template-text { padding: 3rem 2rem; }
     .template-quote-section {
         padding: 4rem 2rem;
