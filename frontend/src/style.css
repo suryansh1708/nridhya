@@ -280,7 +280,7 @@ footer {
     color: var(--text-primary);
 }
 
-/* Contact / Register / Classes heroes — scales on narrow screens */
+/* Contact / Our Work / Classes heroes — scales on narrow screens */
 .page-hero-title {
     font-size: clamp(2rem, 5vw + 1.25rem, 3.5rem);
     font-weight: 700;
