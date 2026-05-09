@@ -472,7 +472,7 @@ footer {
 /* Responsive */
 @media (max-width: 900px) {
     .template-hero, .template-section, .template-quote-section {
-        flex-direction: column;
+        flex-direction: column !important;
     }
     /* Avoid 50vh + vertical center chopping hero titles under the toolbar / nav */
     .template-hero {
