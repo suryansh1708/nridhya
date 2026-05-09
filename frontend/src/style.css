@@ -7,12 +7,12 @@
     --accent-gold: #F3CF91;
     --glass-bg: rgba(0, 0, 0, 0.2);
     --glass-border: rgba(255, 255, 255, 0.2);
-    /* Space for fixed navbar; increased when nav stacks on narrow viewports */
-    --nav-offset: clamp(4.85rem, 3.5vw + 3.25rem, 6.75rem);
+    /* No-JS fallback; with JS, --nav-offset-px matches real bar + overflow (e.g. logo) */
+    --nav-offset-fallback: clamp(5.25rem, 4vw + 3.5rem, 7rem);
 }
 
 html {
-    scroll-padding-top: calc(env(safe-area-inset-top, 0px) + var(--nav-offset) + 0.75rem);
+    scroll-padding-top: calc(var(--nav-offset-px, calc(env(safe-area-inset-top, 0px) + var(--nav-offset-fallback))) + 12px);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -80,7 +80,8 @@ h1, h2, h3, .logo {
 .nav-logo {
     height: clamp(50px, 8vw, 75px);
     width: auto;
-    margin: clamp(-10px, -1.5vw, -15px) 0;
+    /* keep inside bar box so layout height matches paint; was inline -15px overflowing into page */
+    margin: clamp(-6px, -0.8vw, -4px) 0;
 }
 
 .logo { 
@@ -112,9 +113,9 @@ h1, h2, h3, .logo {
 }
 .btn-primary-nav:hover { background: var(--accent-hover); color: #BA1A21 !important; }
 
-/* Main content clears fixed nav (all interior pages use .page-content) */
+/* Main content starts below fixed nav (JS sets --nav-offset-px from measured layout) */
 main.page-content {
-    padding-top: calc(env(safe-area-inset-top, 0px) + var(--nav-offset));
+    padding-top: var(--nav-offset-px, calc(env(safe-area-inset-top, 0px) + var(--nav-offset-fallback)));
 }
 
 /* Hero Section */
@@ -512,8 +513,7 @@ footer {
 
 @media (max-width: 768px) {
     :root {
-        /* Logo row + wrapped nav links on phones — extra slack for tallest layouts */
-        --nav-offset: clamp(8rem, 14vw + 5.5rem, 12.5rem);
+        --nav-offset-fallback: clamp(10.5rem, 28vw, 14rem);
     }
     .nav-content { 
         flex-direction: column; 
@@ -521,7 +521,7 @@ footer {
         gap: 0.5rem;
     }
     .logo { font-size: 1.5rem; margin-left: 0 !important; }
-    .nav-logo { height: 50px; margin: -8px 0; }
+    .nav-logo { height: 50px; margin: -4px 0; }
     .nav-links { 
         margin-top: 0.5rem; 
         display: flex; 
@@ -593,7 +593,7 @@ footer {
 
 @media (max-width: 480px) {
     :root {
-        --nav-offset: clamp(8.25rem, 16vw + 5rem, 13rem);
+        --nav-offset-fallback: clamp(11rem, 32vw, 15rem);
     }
     .hero h1 { font-size: 2rem; }
     .hero { padding-top: 140px; }

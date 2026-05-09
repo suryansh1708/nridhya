@@ -1,7 +1,7 @@
 <nav class="glass-nav" data-gjs-type="header">
     <div class="nav-content">
         <a href="index.html" class="logo" style="text-decoration: none; display: flex; align-items: center; margin-left: -6rem;">
-            <img src="images/logo.png" alt="Nridhya Logo" class="nav-logo" style="height: clamp(50px, 8vw, 75px); width: auto; margin: -15px 0;">
+            <img src="images/logo.png" alt="Nridhya Logo" class="nav-logo" style="height: clamp(50px, 8vw, 75px); width: auto;">
         </a>
         <div class="nav-links">
             <a href="home.html">About us</a>
@@ -11,3 +11,41 @@
         </div>
     </div>
 </nav>
+<script>
+(function () {
+  function navVisualBottom(root) {
+    var r = root.getBoundingClientRect();
+    var bottom = r.bottom;
+    var nodes = root.querySelectorAll("*");
+    for (var i = 0; i < nodes.length; i++) {
+      var b = nodes[i].getBoundingClientRect().bottom;
+      if (b > bottom) bottom = b;
+    }
+    return bottom;
+  }
+  function sync() {
+    var nav = document.querySelector(".glass-nav");
+    if (!nav) return;
+    var px = Math.ceil(navVisualBottom(nav)) + 16;
+    document.documentElement.style.setProperty("--nav-offset-px", px + "px");
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", sync);
+  } else {
+    sync();
+  }
+  window.addEventListener("resize", function () {
+    clearTimeout(window.__navOffT);
+    window.__navOffT = setTimeout(sync, 50);
+  });
+  window.addEventListener("orientationchange", sync);
+  if ("ResizeObserver" in window) {
+    var n = document.querySelector(".glass-nav");
+    if (n) new ResizeObserver(sync).observe(n);
+  }
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(sync);
+  requestAnimationFrame(function () {
+    requestAnimationFrame(sync);
+  });
+})();
+</script>
