@@ -548,5 +548,18 @@ ${sitemapEntries.join('\n')}
     }
 }
 
-// Run build
-buildSite();
+// Export functions for testing
+module.exports = {
+    hashContent,
+    needsRebuild,
+    injectPartials,
+    minifyCSS,
+    minifyHTML,
+    processInParallel,
+    CONFIG,
+};
+
+// Run build only if this is the main module
+if (require.main === module) {
+    buildSite();
+}

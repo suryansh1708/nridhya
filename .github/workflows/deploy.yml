@@ -71,6 +71,10 @@ jobs:
         working-directory: frontend
         run: npm ci --prefer-offline
 
+      - name: Run Tests
+        working-directory: frontend
+        run: npm test
+        
       - name: Optimize Images
         run: python optimize_images.py
         env:
