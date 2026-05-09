@@ -495,7 +495,23 @@ footer {
         min-height: 50vh;
     }
     .template-text { padding: 3rem 2rem; }
-    .template-quote-section { padding: 4rem 2rem; gap: 3rem; }
+    .template-quote-section {
+        padding: 4rem 2rem;
+        gap: 3rem;
+        align-items: stretch;
+    }
+    /* Notable Highlights: image → title → paragraphs on phone */
+    .template-quote-right {
+        order: 1;
+        justify-content: center;
+    }
+    .template-quote-center {
+        order: 2;
+    }
+    .template-quote-left {
+        order: 3;
+        padding-right: 0;
+    }
     .template-gallery { grid-template-columns: 1fr; height: auto; max-height: none; }
     .template-gallery-item { height: 200px; }
     .template-quote-right picture { width: 200px; height: 200px; }
