@@ -508,6 +508,13 @@ footer {
     section#details.template-section .template-image {
         order: 2;
     }
+    /* Artistic Mentorship: heading + paragraphs first, image below */
+    section#artistic-mentorship.template-section .template-text {
+        order: 1;
+    }
+    section#artistic-mentorship.template-section .template-image {
+        order: 2;
+    }
     .template-text { padding: 3rem 2rem; }
     .template-quote-section {
         padding: 4rem 2rem;
