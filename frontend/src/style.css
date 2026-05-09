@@ -285,6 +285,18 @@ footer {
     object-position: top center;
 }
 
+.template-hero-text h1 {
+    color: var(--text-primary);
+}
+
+/* Contact / Register / Classes heroes — scales on narrow screens */
+.page-hero-title {
+    font-size: clamp(2rem, 5vw + 1.25rem, 3.5rem);
+    font-weight: 700;
+    margin-bottom: clamp(1rem, 3vw, 2rem);
+    line-height: 1.15;
+}
+
 .template-section {
     display: flex;
     align-items: stretch;
@@ -471,8 +483,22 @@ footer {
     .template-hero, .template-section, .template-quote-section {
         flex-direction: column;
     }
+    /* Avoid 50vh + vertical center chopping hero titles under the toolbar / nav */
+    .template-hero {
+        min-height: 0;
+        align-items: stretch;
+    }
+    .template-hero-text {
+        flex: 0 0 auto;
+        justify-content: flex-start;
+        align-items: stretch;
+        min-height: 0;
+        order: 1;
+    }
     .template-hero-image {
-        min-height: 50vh;
+        flex: 1 1 auto;
+        order: 2;
+        min-height: min(52vh, 28rem);
     }
     .template-image {
         min-height: 50vh;
@@ -486,8 +512,8 @@ footer {
 
 @media (max-width: 768px) {
     :root {
-        /* Logo row + wrapped nav links on phones */
-        --nav-offset: clamp(7rem, 12vw + 5.75rem, 11.5rem);
+        /* Logo row + wrapped nav links on phones — extra slack for tallest layouts */
+        --nav-offset: clamp(8rem, 14vw + 5.5rem, 12.5rem);
     }
     .nav-content { 
         flex-direction: column; 
@@ -546,7 +572,7 @@ footer {
     .glass-card p, .glass-card ul { font-size: 0.95rem; }
     
     /* Do not shorthand padding-top — main.page-content already reserves nav clearance */
-    .template-hero-text { padding: 1rem 1.5rem 2rem; }
+    .template-hero-text { padding: 0.75rem 1.5rem 1.75rem; }
     .template-text { padding: 2rem 1.5rem; }
     .template-quote-center { font-size: 2rem; }
     .template-gallery-text { font-size: 1.5rem; letter-spacing: 2px; }
@@ -567,7 +593,7 @@ footer {
 
 @media (max-width: 480px) {
     :root {
-        --nav-offset: clamp(7.5rem, 14vw + 5.25rem, 12rem);
+        --nav-offset: clamp(8.25rem, 16vw + 5rem, 13rem);
     }
     .hero h1 { font-size: 2rem; }
     .hero { padding-top: 140px; }
