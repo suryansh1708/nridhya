@@ -215,7 +215,8 @@ async function processPage(file, { templateHtml, partials, siteConfig, cache }) 
         .replace(/\{\{SITE_TITLE\}\}/g, siteConfig.title || 'My Site')
         .replace(/\{\{SITE_DESC\}\}/g, pageDesc)
         .replace(/\{\{PAGE_TITLE\}\}/g, data.title || 'Page')
-        .replace(/\{\{PAGE_SLUG\}\}/g, pageSlug);
+        .replace(/\{\{PAGE_SLUG\}\}/g, pageSlug)
+        .replace(/\{\{BUILD_TIME\}\}/g, Date.now().toString(36));
     
     // Minify
     const originalSize = Buffer.byteLength(finalHtml);
