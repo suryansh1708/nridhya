@@ -321,9 +321,11 @@ async function buildSite() {
         const imagesDir = path.join(CONFIG.CONTENT_DIR, 'images');
         const distImagesDir = path.join(CONFIG.DIST_DIR, 'images');
         
-        // Skip if already done in CI pipeline
-        if (process.env.SKIP_IMAGE_OPTIMIZATION === 'true') {
-            console.log('  Skipped (handled by CI pipeline)');
+        // Skip only when CI runs optimize_images in an earlier workflow step (not for local npm run build)
+        const skipImageStep =
+            process.env.SKIP_IMAGE_OPTIMIZATION === 'true' && process.env.CI === 'true';
+        if (skipImageStep) {
+            console.log('  Skipped (CI pipeline already ran optimize_images.py)');
             stats.timings.images = 0;
         } else {
         
@@ -358,9 +360,10 @@ async function buildSite() {
         
         if (imagesNeedProcessing) {
             try {
-                const pythonPath = path.join(__dirname, '../.venv/bin/python');
                 const optimizeScript = path.join(__dirname, '../optimize_images.py');
-                execSync(`"${pythonPath}" "${optimizeScript}"`, { stdio: 'inherit' });
+                const venvPython = path.join(__dirname, '../.venv/bin/python');
+                const py = fsSync.existsSync(venvPython) ? venvPython : 'python3';
+                execSync(`"${py}" "${optimizeScript}"`, { stdio: 'inherit' });
             } catch {
                 console.log('  Image optimization skipped (Python/Pillow not available)');
                 try {
