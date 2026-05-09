@@ -7,12 +7,6 @@
     --accent-gold: #F3CF91;
     --glass-bg: rgba(0, 0, 0, 0.2);
     --glass-border: rgba(255, 255, 255, 0.2);
-    /* No-JS fallback; with JS, --nav-offset-px matches real bar + overflow (e.g. logo) */
-    --nav-offset-fallback: clamp(5.25rem, 4vw + 3.5rem, 7rem);
-}
-
-html {
-    scroll-padding-top: calc(var(--nav-offset-px, calc(env(safe-area-inset-top, 0px) + var(--nav-offset-fallback))) + 12px);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -57,10 +51,11 @@ h1, h2, h3, .logo {
     100% { transform: translate3d(80px, 80px, 0) scale(1.05); }
 }
 
-/* Optimized Navigation - darker red menu bar */
+/* Navigation - sticky so it stays at top but takes up flow space (no overlap) */
 .glass-nav {
-    position: fixed;
-    top: 0; left: 0; width: 100%;
+    position: sticky;
+    top: 0;
+    width: 100%;
     background: #8A0001;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -113,14 +108,11 @@ h1, h2, h3, .logo {
 }
 .btn-primary-nav:hover { background: var(--accent-hover); color: #BA1A21 !important; }
 
-/* Main content starts below fixed nav (JS sets --nav-offset-px from measured layout) */
-main.page-content {
-    padding-top: var(--nav-offset-px, calc(env(safe-area-inset-top, 0px) + var(--nav-offset-fallback)));
-}
+/* No padding-top needed — sticky nav takes up flow space automatically */
 
 /* Hero Section */
 .hero {
-    height: 100vh;
+    min-height: 85vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -255,8 +247,7 @@ footer {
 .template-hero {
     display: flex;
     align-items: stretch;
-    min-height: 100vh;
-    padding-top: 0;
+    min-height: 85vh;
 }
 .template-hero-text {
     flex: 1;
@@ -264,7 +255,6 @@ footer {
     flex-direction: column;
     justify-content: center;
     padding: 4rem;
-    padding-top: 1.25rem;
 }
 .template-hero-image {
     flex: 1;
@@ -272,7 +262,7 @@ footer {
     align-items: stretch;
     justify-content: center;
     overflow: hidden;
-    min-height: 100vh;
+    min-height: 85vh;
 }
 .template-hero-image picture {
     width: 100%;
@@ -512,9 +502,6 @@ footer {
 }
 
 @media (max-width: 768px) {
-    :root {
-        --nav-offset-fallback: clamp(10.5rem, 28vw, 14rem);
-    }
     .nav-content { 
         flex-direction: column; 
         padding: 0.75rem 1rem;
@@ -562,7 +549,7 @@ footer {
         background: rgba(255, 255, 255, 0.22);
     }
     
-    .hero { padding: 0 1.5rem; padding-top: 120px; }
+    .hero { padding: 0 1.5rem; }
     .hero h1 { font-size: 2.5rem; line-height: 1.2; }
     .subtitle { font-size: 1rem; margin-bottom: 2rem; }
     
@@ -571,8 +558,7 @@ footer {
     .glass-card h2 { font-size: 1.8rem; }
     .glass-card p, .glass-card ul { font-size: 0.95rem; }
     
-    /* Do not shorthand padding-top — main.page-content already reserves nav clearance */
-    .template-hero-text { padding: 0.75rem 1.5rem 1.75rem; }
+    .template-hero-text { padding: 1.5rem 1.5rem 2rem; }
     .template-text { padding: 2rem 1.5rem; }
     .template-quote-center { font-size: 2rem; }
     .template-gallery-text { font-size: 1.5rem; letter-spacing: 2px; }
@@ -592,11 +578,7 @@ footer {
 }
 
 @media (max-width: 480px) {
-    :root {
-        --nav-offset-fallback: clamp(11rem, 32vw, 15rem);
-    }
     .hero h1 { font-size: 2rem; }
-    .hero { padding-top: 140px; }
     .subtitle { font-size: 0.9rem; }
     .btn-primary, .btn-secondary { 
         padding: 0.75rem 1.25rem; 
@@ -605,7 +587,7 @@ footer {
         text-align: center;
     }
     .nav-links a { font-size: 0.7rem; padding: 0.4rem 0.6rem; }
-    .template-hero-text { padding: 0.75rem 1.25rem 1.75rem; }
+    .template-hero-text { padding: 1.25rem 1.25rem 1.5rem; }
     .glass-card h2 { font-size: 1.5rem; }
     .template-quote-center { font-size: 1.5rem; }
     .template-quote-right picture { width: 150px; height: 150px; }
