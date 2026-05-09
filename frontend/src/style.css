@@ -7,6 +7,12 @@
     --accent-gold: #F3CF91;
     --glass-bg: rgba(0, 0, 0, 0.2);
     --glass-border: rgba(255, 255, 255, 0.2);
+    /* Space for fixed navbar; increased when nav stacks on narrow viewports */
+    --nav-offset: clamp(4.85rem, 3.5vw + 3.25rem, 6.75rem);
+}
+
+html {
+    scroll-padding-top: calc(env(safe-area-inset-top, 0px) + var(--nav-offset) + 0.75rem);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -105,6 +111,11 @@ h1, h2, h3, .logo {
     transition: background 0.3s !important;
 }
 .btn-primary-nav:hover { background: var(--accent-hover); color: #BA1A21 !important; }
+
+/* Main content clears fixed nav (all interior pages use .page-content) */
+main.page-content {
+    padding-top: calc(env(safe-area-inset-top, 0px) + var(--nav-offset));
+}
 
 /* Hero Section */
 .hero {
@@ -252,7 +263,7 @@ footer {
     flex-direction: column;
     justify-content: center;
     padding: 4rem;
-    padding-top: 100px;
+    padding-top: 1.25rem;
 }
 .template-hero-image {
     flex: 1;
@@ -474,6 +485,10 @@ footer {
 }
 
 @media (max-width: 768px) {
+    :root {
+        /* Logo row + wrapped nav links on phones */
+        --nav-offset: clamp(7rem, 12vw + 5.75rem, 11.5rem);
+    }
     .nav-content { 
         flex-direction: column; 
         padding: 0.75rem 1rem;
@@ -530,7 +545,9 @@ footer {
     .glass-card h2 { font-size: 1.8rem; }
     .glass-card p, .glass-card ul { font-size: 0.95rem; }
     
-    .template-hero-text, .template-text { padding: 2rem 1.5rem; }
+    /* Do not shorthand padding-top — main.page-content already reserves nav clearance */
+    .template-hero-text { padding: 1rem 1.5rem 2rem; }
+    .template-text { padding: 2rem 1.5rem; }
     .template-quote-center { font-size: 2rem; }
     .template-gallery-text { font-size: 1.5rem; letter-spacing: 2px; }
     
@@ -549,6 +566,9 @@ footer {
 }
 
 @media (max-width: 480px) {
+    :root {
+        --nav-offset: clamp(7.5rem, 14vw + 5.25rem, 12rem);
+    }
     .hero h1 { font-size: 2rem; }
     .hero { padding-top: 140px; }
     .subtitle { font-size: 0.9rem; }
@@ -559,6 +579,7 @@ footer {
         text-align: center;
     }
     .nav-links a { font-size: 0.7rem; padding: 0.4rem 0.6rem; }
+    .template-hero-text { padding: 0.75rem 1.25rem 1.75rem; }
     .glass-card h2 { font-size: 1.5rem; }
     .template-quote-center { font-size: 1.5rem; }
     .template-quote-right picture { width: 150px; height: 150px; }
