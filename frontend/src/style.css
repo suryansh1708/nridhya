@@ -501,6 +501,17 @@ footer {
     .btn-primary-nav {
         padding: 0.5rem 1rem;
         font-size: 0.75rem;
+        color: #ffffff !important;
+        background: rgba(255, 255, 255, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+    }
+    .btn-primary-nav:hover {
+        background: rgba(255, 255, 255, 0.28);
+        color: #ffffff !important;
+    }
+    .btn-primary-nav:active {
+        background: rgba(255, 255, 255, 0.22);
+        color: #ffffff !important;
     }
     
     .hero { padding: 0 1.5rem; padding-top: 120px; }

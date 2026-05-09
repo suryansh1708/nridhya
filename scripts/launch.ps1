@@ -1,5 +1,10 @@
 # Nridhya Development Server Launcher (PowerShell - Windows/Mac/Linux)
 # Usage: pwsh ./scripts/launch.ps1
+#        pwsh ./scripts/launch.ps1 -NoBuild
+
+param(
+    [switch]$NoBuild
+)
 
 Write-Host ""
 Write-Host "================================" -ForegroundColor Cyan
@@ -26,11 +31,23 @@ if (-not $pythonCmd) {
     exit 1
 }
 
+if (-not $NoBuild) {
+    Write-Host "[0/2] Building static site (frontend)..." -ForegroundColor Yellow
+    Push-Location (Join-Path $projectRoot "frontend")
+    try {
+        npm run build
+        if ($LASTEXITCODE -ne 0) { throw "build failed" }
+    } finally {
+        Pop-Location
+    }
+    Write-Host ""
+}
+
 Write-Host "Starting servers..." -ForegroundColor Yellow
 Write-Host ""
 
 # Start Frontend (static file server)
-Write-Host "[1/2] Starting Frontend on http://localhost:8000" -ForegroundColor Green
+Write-Host "[1/2] Serving dist/ on http://localhost:8000" -ForegroundColor Green
 $frontendJob = Start-Job -ScriptBlock {
     param($root, $py)
     Set-Location "$root/dist"

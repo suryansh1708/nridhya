@@ -1,6 +1,7 @@
 #!/bin/bash
 # Nridhya Development Server Launcher (Bash - Mac/Linux)
-# Usage: ./scripts/launch.sh
+# Usage: ./scripts/launch.sh          # build frontend, then start servers
+#        ./scripts/launch.sh --no-build
 
 echo ""
 echo "================================"
@@ -12,6 +13,11 @@ echo ""
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
 cd "$PROJECT_ROOT"
+
+NO_BUILD=false
+if [ "${1:-}" = "--no-build" ]; then
+    NO_BUILD=true
+fi
 
 # Check for Node.js
 if ! command -v node &> /dev/null; then
@@ -39,6 +45,15 @@ else
     NPM_CMD="npm"
 fi
 
+if [ "$NO_BUILD" = false ]; then
+    echo "[0/2] Building static site (frontend)..."
+    (cd "$PROJECT_ROOT/frontend" && $NPM_CMD run build) || {
+        echo "ERROR: Frontend build failed."
+        exit 1
+    }
+    echo ""
+fi
+
 echo "Starting servers..."
 echo ""
 
@@ -55,7 +70,7 @@ cleanup() {
 trap cleanup SIGINT SIGTERM
 
 # Start Frontend (static file server)
-echo "[1/2] Starting Frontend on http://localhost:8000"
+echo "[1/2] Serving dist/ on http://localhost:8000"
 cd "$PROJECT_ROOT/dist"
 $PYTHON_CMD -m http.server 8000 &
 FRONTEND_PID=$!
