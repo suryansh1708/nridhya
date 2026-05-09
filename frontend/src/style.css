@@ -498,20 +498,27 @@ footer {
     .nav-links a:active {
         background: rgba(255,255,255,0.15);
     }
-    .btn-primary-nav {
+    /* Contact CTA: beat .nav-links a / :hover specificity; fix :visited + iOS text fill */
+    .glass-nav .nav-links a.btn-primary-nav,
+    .glass-nav .nav-links a.btn-primary-nav:link,
+    .glass-nav .nav-links a.btn-primary-nav:visited {
         padding: 0.5rem 1rem;
         font-size: 0.75rem;
         color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff;
         background: rgba(255, 255, 255, 0.18);
         border: 1px solid rgba(255, 255, 255, 0.35);
     }
-    .btn-primary-nav:hover {
+    .glass-nav .nav-links a.btn-primary-nav:hover,
+    .glass-nav .nav-links a.btn-primary-nav:focus,
+    .glass-nav .nav-links a.btn-primary-nav:focus-visible,
+    .glass-nav .nav-links a.btn-primary-nav:active {
         background: rgba(255, 255, 255, 0.28);
         color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff;
     }
-    .btn-primary-nav:active {
+    .glass-nav .nav-links a.btn-primary-nav:active {
         background: rgba(255, 255, 255, 0.22);
-        color: #ffffff !important;
     }
     
     .hero { padding: 0 1.5rem; padding-top: 120px; }
