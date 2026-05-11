@@ -515,6 +515,13 @@ footer {
     section#artistic-mentorship.template-section .template-image {
         order: 2;
     }
+    /* Structured Learning: heading + copy first, image below on narrow screens */
+    section#structured-learning.template-section .template-text {
+        order: 1;
+    }
+    section#structured-learning.template-section .template-image {
+        order: 2;
+    }
     .template-text { padding: 3rem 2rem; }
     .template-quote-section {
         padding: 4rem 2rem;
