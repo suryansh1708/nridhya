@@ -522,6 +522,13 @@ footer {
     section#structured-learning.template-section .template-image {
         order: 2;
     }
+    /* Choreography: heading + copy first, image below on narrow screens */
+    section#choreography.template-section .template-text {
+        order: 1;
+    }
+    section#choreography.template-section .template-image {
+        order: 2;
+    }
     .template-text { padding: 3rem 2rem; }
     .template-quote-section {
         padding: 4rem 2rem;
